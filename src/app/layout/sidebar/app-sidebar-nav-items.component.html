@@ -1,0 +1,31 @@
+<ng-container *ngFor="let item of items">
+  <ng-container [ngSwitch]="navHelper.itemType(item)">
+    <app-sidebar-nav-dropdown
+      *ngSwitchCase="'dropdown'"
+      [item]="item"
+      [class.open]="navHelper.isActive(router, item)"
+      [ngClass]="navHelper.getClass(item)"
+      appNavDropdown
+      routerLinkActive="open">
+    </app-sidebar-nav-dropdown>
+    <app-sidebar-nav-divider
+      *ngSwitchCase="'divider'"
+      [item]="item"
+      [ngClass]="navHelper.getClass(item)">
+    </app-sidebar-nav-divider>
+    <app-sidebar-nav-title
+      *ngSwitchCase="'title'"
+      [item]="item"
+      [ngClass]="navHelper.getClass(item)">
+    </app-sidebar-nav-title>
+    <ng-container 
+      *ngSwitchCase="'empty'">
+    </ng-container>
+    <app-sidebar-nav-link
+      *ngSwitchDefault
+      [item]="item"
+      class="nav-item"
+      [ngClass]="navHelper.getClass(item)">
+    </app-sidebar-nav-link>
+  </ng-container>
+</ng-container>
